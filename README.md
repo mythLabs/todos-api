@@ -1,3 +1,3 @@
 # README
 
-An Api only application with manages Todo(s).
+An Api only application that manages Todo(s) tasks.
