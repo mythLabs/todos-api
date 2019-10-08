@@ -19,7 +19,7 @@ RSpec.describe 'Todos API', type: :request do
     end
 
     describe 'GET /todos/:id' do
-        before { get "/todos/#{:todo_id}}" }
+        before { get "/todos/#{todo_id}" }
 
         context 'when the record exists' do
             it 'returns the todo' do
@@ -80,6 +80,7 @@ RSpec.describe 'Todos API', type: :request do
 
     describe 'PUT /todos/:id' do
         let(:valid_attributes) { { title: 'Shopping' } }
+        before { put "/todos/#{todo_id}", params: valid_attributes }
 
         context 'when the record exists' do
             it 'updates the record' do
@@ -92,6 +93,8 @@ RSpec.describe 'Todos API', type: :request do
         end
 
         context 'when the record does not exist' do
+            let(:todo_id) { 100 }
+            
             it 'returns a not found message' do
                 expect(response.body).to match(/Couldn't find Todo/)
             end
